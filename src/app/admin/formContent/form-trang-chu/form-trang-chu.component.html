@@ -1,0 +1,43 @@
+<div class="form-trangchu">
+  <form action="" [formGroup]="formTrangchu">
+    <div class="borderBox">
+      <div formArrayName="imgLeft" *ngFor="let item of getImgLeft().controls; let i = index">
+        <div [formGroupName]="i">
+          <div class="betweenFlex">
+            <span>Ảnh lớn {{i + 1}}: </span>
+            <input type="text" class="form-control" formControlName="name" placeholder="name">
+
+            <span>Link : </span>
+            <input type="text" class="form-control" formControlName="link" placeholder="link">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="borderBox">
+      <div formArrayName="imgRight" *ngFor="let item of getImgRight().controls; let i = index">
+        <div [formGroupName]="i">
+          <div class="betweenFlex">
+            <span>Ảnh nhỏ {{i + 1}}: </span>
+            <input type="text" class="form-control" formControlName="name" placeholder="name">
+
+            <span>Link : </span>
+            <input type="text" class="form-control" formControlName="link" placeholder="link">
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+
+<div class="btnGroup">
+  <button class="btn btn-outline-warning btnExForm" *ngIf="!isEdit" (click)="onSubmit()" [disabled]="this.formTrangchu.invalid">
+    <i class="fad fa-paper-plane"></i>
+    <span>submit</span>
+  </button>
+  <button class="btn btn-outline-primary btnExForm" *ngIf="isEdit" (click)="saveRowData()">
+    <i class="fad fa-save"></i>
+    <span>Save</span>
+  </button>
+</div>

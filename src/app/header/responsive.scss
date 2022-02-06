@@ -1,0 +1,117 @@
+
+
+@media only screen and (min-width: 1140px) {
+  .container-fluid {
+    .row.row1 {
+      .logo{
+
+      }
+      .search-bar {
+
+      }
+      .box-icon {
+
+      }
+    }
+  }
+}
+
+@media only screen and(max-width: 1139px) and (min-width: 0px) {
+  .screenMobile{
+    display: block!important;
+  }
+  .box-icon{
+    display: flex;justify-content:flex-end;
+    align-items: center;
+    position: relative;
+    i{
+      font-weight: bold;
+      font-size: 120%;
+      color: var(--primary-color);
+    }
+  }
+  .screenMobile__content.active{
+    display: block!important;
+    position: absolute;
+    top: 60px;z-index: 10;
+    right: 0;
+    width: 200px;
+    height: auto;
+    ul{
+      display: flex;flex-wrap: wrap;
+      color: var(--primary-color);
+      li{
+        width: 100%;
+        margin-right: 0!important;
+        padding: 5px;
+        background-color: rgba(60, 99, 130, 0.1);
+        border-top: 1px solid var(--bg-gray);
+        i{
+          font-size: 110%;
+          margin-right: 7px;
+        }
+        span{
+          font-size: 90%;
+        }
+      }
+    }
+  }
+  .screenPc{
+    display: none!important;
+  }
+  .logo {
+    img {
+      width: 100px!important;
+      height: 45px!important;
+    }
+  }
+}
+
+@media only screen and(max-width: 959px) and (min-width: 720px) {
+
+ .container-fluid {
+    .row.row1 {
+      .logo{
+          width: 150px;
+      }
+      .search-bar {
+        width: calc(100% - 150px - 100px)!important;
+      }
+      .box-icon {
+          width: 70px!important;
+      }
+    }
+  }
+}
+
+@media only screen and(max-width: 719px) and (min-width: 540px) {
+  .container-fluid {
+    .row.row1 {
+      .logo{
+        display: none!important;
+      }
+      .search-bar {
+        width: calc(100% - 60px)!important;
+      }
+      .box-icon {
+          width: 50px!important;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 539px) {
+  .container-fluid {
+    .row.row1 {
+      .logo{
+        display: none!important;
+      }
+      .search-bar {
+        width: calc(100% - 60px)!important;
+      }
+      .box-icon {
+          width: 50px!important;
+      }
+    }
+  }
+}

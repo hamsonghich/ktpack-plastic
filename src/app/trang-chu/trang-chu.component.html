@@ -1,0 +1,62 @@
+<div id="nav-top-menu" class="nav-top-menu">
+  <div class="container-custom">
+    <div class="content-left">
+      <span>Danh mục sản phẩm </span>
+      <i class="fa fa-bars"></i>
+    </div>
+    <div class="content-right">
+      <ul class="list-parent">
+        <li>
+          <a href="" routerLink="/trang-chu">Trang chủ</a>
+        </li>
+        <li>
+          <a href="" routerLink="/gioi-thieu">Giới thiệu</a>
+        </li>
+        <li class="list-parent-for" *ngFor="let item of dataMainList; let i = index">
+          <a routerLink="/{{item.link}}">{{item.name}}</a><i style="margin-left: 5px; color: white; font-size: 120%;" class="fas fa-caret-down"></i>
+           <ul style="display: none" class="list-child">
+             <li *ngFor="let item1 of dataHeader[i]">
+               <a routerLink="/{{item.link}}/{{item1.link}}">{{item1.name}}</a>
+             </li>
+           </ul>
+        </li>
+        <li>
+          <a href="" routerLink="/tin-tuc">Tin tức</a>
+        </li>
+        <li>
+          <a href="" routerLink="/lien-he">Liên hệ</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="nav-top-content">
+  <div class="container-custom__one">
+    <div class="box-list">
+      <ul>
+        <li class="list-parent-for" *ngFor="let item of dataMainList; let i = index">
+          <a routerLink="/{{item.link}}">{{item.name}}</a><i style="margin-left: 5px; color: #666666; font-size: 120%;" class="fas fa-caret-right"></i>
+          <ul style="display: none" class="list-child">
+            <li *ngFor="let item1 of dataHeader[i]">
+              <a routerLink="/{{item.link}}/{{item1.link}}">{{item1.name}}</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="slide-img">
+      <owl-carousel-o [options]="customOptions">
+        <ng-container *ngFor="let slide of dataImgTrangchuLeft">
+          <ng-template class="slide" carouselSlide>
+            <img [src]="slide.link" [alt]="slide.name" [title]="slide.name">
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+    </div>
+    <div class="list-img">
+      <div class="img-content" *ngFor="let item of dataImgTrangchuRight">
+        <img src="{{item.link}}" alt="{{item.name}}" title="{{item.name}}">
+      </div>
+    </div>
+  </div>
+</div>

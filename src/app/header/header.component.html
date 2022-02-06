@@ -1,0 +1,81 @@
+<div class="container-fluid">
+  <div class="row row1">
+     <div class="logo">
+       <img src="{{dataInfoFB.imgLogo}}" alt="{{dataInfoFB.tonchi}}" title="{{dataInfoFB.tonchi}}">
+     </div>
+    <div class="search-bar">
+      <mat-form-field appearance="outline">
+        <mat-label>Nhập từ khóa tìm kiếm</mat-label>
+        <input matInput placeholder="Nhập vào đây ...">
+        <button mat-icon-button matSuffix>
+          <mat-icon>search</mat-icon>
+        </button>
+
+      </mat-form-field>
+    </div>
+    <div class="box-icon">
+      <ul class="screenPc">
+        <li>
+          <div class="icon-contact">
+            <a href="tel:{{dataInfoFB.hotline}}">
+              <i class="fad fa-phone-square"></i>
+              <div class="icon-contact__content">
+                <p>Gọi mua hàng</p>
+                <p>{{dataInfoFB.hotline}}</p>
+              </div>
+            </a>
+
+          </div>
+        </li>
+        <li>
+          <div class="icon-contact">
+            <i class="fad fa-calendar-day"></i>
+            <div class="icon-contact__content">
+              <p>Tin tức &</p>
+              <p>Sự kiện</p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="icon-contact">
+            <i matBadge="0" matBadgeSize="small" matBadgeColor="accent"
+               class="fa fa-shopping-cart mr-2"></i>
+            <div class="icon-contact__content">
+              <p>Giỏ hàng</p>
+              <p>Liên hệ</p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="icon-contact">
+            <i class="fad fa-user-shield"></i>
+            <div class="icon-contact__content">
+              <p>Đăng nhập</p>
+              <p>Quản trị viên</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <button (click)="openContentList()" style="display: none; border:none;background: none;" class="screenMobile"><i class="fal fa-bars"></i></button>
+      <div style="display: none" id="screenMobile__content" class="screenMobile__content">
+        <ul>
+          <li>
+            <a href="tel:{{dataInfoFB.hotline}}">
+              <i class="fad fa-phone-square"></i> <span>Gọi mua hàng</span>
+            </a>
+          </li>
+          <li>
+            <i class="fad fa-calendar-day"></i> <span>Tin tức & Sự kiện</span>
+          </li>
+          <li>
+            <i matBadge="0" matBadgeSize="small" matBadgeColor="accent"
+               class="fa fa-shopping-cart mr-2"></i> <span>Giỏ hàng</span>
+          </li>
+          <li>
+            <i class="fad fa-user-shield"></i><span>Quản trị viên</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

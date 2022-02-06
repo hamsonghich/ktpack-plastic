@@ -1,0 +1,27 @@
+<div class="content-tintuc">
+  <div class="content">
+    <div class="title leftFlex">
+      <i class="fad fa-question-circle"></i>
+      <span>Tin tức công ty</span>
+    </div>
+
+    <div class="btn-group">
+      <button mat-raised-button class="btnCustomForm1" (click)="openFormTintuc()">
+        <i class="fad fa-folder-open"></i>
+        <span>Mở form</span>
+      </button>
+      <button mat-raised-button class="btnCustomForm2" (click)="updateFormTintuc(this.dataFormTintucFB)">
+        <i class="fa fa-edit"></i>
+        <span>Chỉnh sửa form</span>
+      </button>
+    </div>
+
+    <div class="content-text">
+      <div [innerHTML]="dataFormTintucFB.content1"></div>
+      <div [innerHTML]="dataFormTintucFB.content2"></div>
+      <div class="centerFlex  imgContent" style= "margin: 10px 0px" [innerHTML]="dataFormTintucFB.content3"> </div>
+      <div [innerHTML]="dataFormTintucFB.content4"></div>
+    </div>
+
+  </div>
+</div>

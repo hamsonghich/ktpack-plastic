@@ -1,0 +1,25 @@
+<div class="form-content">
+  <form action="" [formGroup]="formGioithieu">
+    <span class="text-warning">** Nội dung giới thiệu</span>
+    <angular-editor formControlName="contentGioithieu1" [config]="config"></angular-editor>
+    <span class="text-warning">** Ảnh sản phẩm</span>
+    <angular-editor formControlName="imgLink" [config]="config"></angular-editor>
+    <span class="text-warning">** Cam kết với khách hàng</span>
+    <angular-editor formControlName="commitCompany" [config]="config"></angular-editor>
+    <span class="text-warning">** Nội dung cuối</span>
+    <angular-editor formControlName="adviseCompany" [config]="config"></angular-editor>
+  </form>
+</div>
+
+
+<div class="btnGroup">
+  <button class="btn btn-outline-warning btnExForm" *ngIf="!isEdit" (click)="onSubmit()" [disabled]="this.formGioithieu.invalid">
+    <i class="fad fa-paper-plane"></i>
+    <span>submit</span>
+  </button>
+  <button class="btn btn-outline-primary btnExForm" *ngIf="isEdit" (click)="saveRowData()">
+    <i class="fad fa-save"></i>
+    <span>Save</span>
+  </button>
+</div>
+

@@ -1,0 +1,105 @@
+@import "responsive.scss";
+
+a {
+  color: var(--primary-color);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.container-fluid {
+  font-family: hevatica-regular, sans-serif;
+  .row.row1 {
+    height: 100px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: var(--bg-gray);
+    display: flex;justify-content: flex-start;
+    align-items: center; flex-wrap: wrap;
+    .logo {
+      //background: rgba(255, 0, 0, 0.1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 150px;
+
+      img {
+        width: 150px;
+        padding: 5px 10px;
+        height: 60px;
+      }
+    }
+
+    .search-bar {
+      width: calc(60% - 150px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      ::ng-deep mat-form-field {
+        width: 100%;
+      }
+
+      ::ng-deep .mat-form-field-flex > .mat-form-field-infix {
+        padding: 0.4em 0px !important;
+      }
+
+      ::ng-deep .mat-form-field-label-wrapper {
+        top: -1.5em;
+      }
+
+      ::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+        transform: translateY(-1.1em) scale(.75);
+        width: 133.33333%;
+      }
+
+      //mat-input focused color
+      ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+        color: var(--primary-color) !important;
+      }
+
+      // mat-label normal state style
+      ::ng-deep .mat-form-field-label {
+        color: var(--primary-color) !important;
+      }
+
+    }
+
+    .box-icon {
+        //background-color: rgba(255, 255, 0, 0.1);
+      width: 40%;
+      ul {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+        color: var(--primary-color);
+
+        li {
+          list-style: none;
+          margin-right: 20px;
+          cursor: pointer;
+
+          .icon-contact {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+
+            i {
+              font-size: 180%;
+              margin-right: 10px;
+            }
+
+            .icon-contact__content {
+              p {
+                margin-bottom: 0 !important;
+                font-size: 85%;
+                font-weight: bold;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+}

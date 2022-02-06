@@ -1,0 +1,79 @@
+<!--<div class="container-fluid">-->
+<!--  <div class="row row1">-->
+<!--    <div class="list-group">-->
+<!--      <i class="fal fa-list-ul"></i>-->
+<!--      <span>Danh mục</span>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div class="row row2">-->
+<!--    <ul>-->
+<!--      <li>-->
+<!--        <a rel="canonical" routerLink="/trang-chu" routerLinkActive="$router_link-active$">Trang chủ</a>-->
+<!--      </li>-->
+<!--      <li>-->
+<!--        <a rel="canonical" routerLink="/gioi-thieu" routerLinkActive="$router_link-active$">Giới thiệu</a>-->
+<!--      </li>-->
+<!--    </ul>-->
+<!--    <ul>-->
+<!--      <li>-->
+<!--        <a rel="canonical" routerLink="/tin-tuc" routerLinkActive="$router_link-active$">Tin tức</a>-->
+<!--      </li>-->
+<!--      <li>-->
+<!--        <a rel="canonical" routerLink="/lien-he" routerLinkActive="$router_link-active$">Liên hệ</a>-->
+<!--      </li>-->
+<!--    </ul>-->
+<!--    <mat-accordion>-->
+<!--      <mat-expansion-panel *ngFor="let item of dataMainList; let i = index">-->
+<!--        <mat-expansion-panel-header>-->
+<!--          <mat-panel-title>-->
+<!--            <a rel="canonical" href=""  routerLink="/{{item.link}}" routerLinkActive="$router_link-active$">{{item.name}} </a>-->
+<!--          </mat-panel-title>-->
+<!--        </mat-expansion-panel-header>-->
+<!--        <ul>-->
+<!--          <li *ngFor="let item1 of dataHeader[i]">-->
+<!--            <a rel="canonical" routerLink="/{{item.link}}/{{item1.link}}" routerLinkActive="$router_link-active$">{{item1.name}}</a>-->
+<!--          </li>-->
+<!--        </ul>-->
+<!--      </mat-expansion-panel>-->
+<!--    </mat-accordion>-->
+
+<!--  </div>-->
+<!--</div>-->
+
+<div class="container-fluid">
+  <div class="row rowPC">
+    <ul class="content-list">
+      <li>
+        <a rel="canonical" routerLink="/trang-chu">
+          <span>Trang chủ</span>
+        </a>
+      </li>
+      <li>
+        <a rel="canonical" routerLink="/gioi-thieu">
+          <span>Giới thiệu</span>
+        </a>
+      </li>
+      <li class="list-parent" *ngFor="let item of dataMainList; let i = index">
+        <a rel="canonical" routerLink="/{{item.link}}">
+          <span>{{item.name}}</span>
+          <i class="fas fa-caret-right"></i>
+        </a>
+        <ul class="list-child" >
+          <li *ngFor="let item1 of dataHeader[i]">
+            <a rel="canonical" routerLink="/{{item.link}}/{{item1.link}}" routerLinkActive="$router_link-active$">{{item1.name}}</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a rel="canonical" routerLink="/tin-tuc">
+          <span>Tin tức</span>
+        </a>
+      </li>
+      <li>
+        <a rel="canonical" routerLink="/lien-he">
+          <span>Liên hệ</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

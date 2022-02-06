@@ -1,0 +1,399 @@
+import {Component, OnInit} from '@angular/core';
+import {Form, FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FirebaseService} from "../../../services/firebase.service";
+import {MatDialogRef} from "@angular/material/dialog";
+import {DataService} from "../../../services/data.service";
+import {AngularEditorConfig} from "@kolkov/angular-editor";
+
+@Component({
+  selector: 'app-form-product-details',
+  templateUrl: './form-product-details.component.html',
+  styleUrls: ['./form-product-details.component.scss']
+})
+export class FormProductDetailsComponent implements OnInit {
+  public isEdit = false;
+  public dataPatchValue: any;
+  public formDataProductDetails: FormGroup | any;
+  public dataProductMain: any[] = [];
+  public dataProductMainBrand: any[] = [];
+  public isHiddenMeta = false;
+  public isHiddenImg = false;
+  public isHiddenDescription = false;
+
+  constructor(public fb: FormBuilder, public firebaseService: FirebaseService,
+              public matDialogRef: MatDialogRef<FormProductDetailsComponent>, public dataService: DataService) {
+    this.formDataProductDetails = this.fb.group({
+      addCart: [false],
+      checkBox: [false],
+      productMain: ['', [Validators.required]],
+      productMainBrand: ['', [Validators.required]],
+      productDetails: this.fb.group({
+        name: ['', Validators.required],
+        link: ['', Validators.required],
+      }),
+      address: ['Hưng Yên', [Validators.required]],
+      price: ['Liên hệ', [Validators.required]],
+      sellNumber: [`${this.dataService.getRandomInt(1, 3)}`, [Validators.required, Validators.pattern('^\\d+\\.?\\d*$')]],
+      like: [false],
+      star: [`${this.dataService.getRandomInt(4, 5)}`, [Validators.required, Validators.pattern('^\\d+\\.?\\d*$')]],
+      discount: [`${this.dataService.getRandomInt1(10, 30)}`, [Validators.required, Validators.pattern('^\\d+\\.?\\d*$')]],
+      evaluate: [`${this.dataService.getRandomInt1(200, 500)}`, [Validators.required, Validators.pattern('^\\d+\\.?\\d*$')]],
+      description: this.fb.array([
+        this.fb.group({
+          title: ['', [Validators.required]],
+          content: ['', [Validators.required]],
+        }),
+        this.fb.group({
+          title: ['', [Validators.required]],
+          content: ['', [Validators.required]],
+        }),
+        this.fb.group({
+          title: [''],
+          content: [''],
+        }),
+        this.fb.group({
+          title: [''],
+          content: [''],
+        }),
+        this.fb.group({
+          title: [''],
+          content: [''],
+        }),
+
+      ]),  // title: [''], content: ['']
+      img: this.fb.array([
+        this.fb.group({
+          name: ['tên ảnh', [Validators.required]],
+          link: ['', [Validators.required]],
+        }),
+        this.fb.group({
+          name: ['tên ảnh', [Validators.required]],
+          link: ['', [Validators.required]],
+        }),
+        this.fb.group({
+          name: ['tên ảnh', [Validators.required]],
+          link: ['', [Validators.required]],
+        }),
+        this.fb.group({
+          name: ['tên ảnh', [Validators.required]],
+          link: ['', [Validators.required]],
+        }),
+      ]),
+      productMetaName: this.fb.array([
+        this.fb.group({
+          name: ['author', [Validators.required]],
+          content: ['', [Validators.required]]
+        }),
+        this.fb.group({
+          name: ['description', [Validators.required]],
+          content: ['', [Validators.required]]
+        }),
+        this.fb.group({
+          name: ['abstract', [Validators.required]],
+          content: ['', [Validators.required]]
+        }),
+        this.fb.group({
+          name: ['copyright', [Validators.required]],
+          content: ['', [Validators.required]]
+        }),
+        this.fb.group({
+          name: ['', [Validators.required]],
+          content: ['', [Validators.required]]
+        }),
+        this.fb.group({
+          name: ['', [Validators.required]],
+          content: ['', [Validators.required]]
+        }),
+      ]),
+      productMetaProperty: this.fb.array([
+        this.fb.group({
+          property: ['og:url', [Validators.required]],
+          content: ['', [Validators.required]]
+        }),
+        this.fb.group({
+          property: ['og:type', [Validators.required]],
+          content: ['', [Validators.required]]
+        }),
+        this.fb.group({
+          property: ['og:title', [Validators.required]],
+          content: ['', [Validators.required]]
+        }),
+        this.fb.group({
+          property: ['og:description', [Validators.required]],
+          content: ['', [Validators.required]]
+        }),
+        this.fb.group({
+          property: ['og:image', [Validators.required]],
+          content: ['', [Validators.required]]
+        }),
+        this.fb.group({
+          property: ['', [Validators.required]],
+          content: ['', [Validators.required]]
+        }),
+      ]),
+      productMetaGoogle: this.fb.array([
+        this.fb.group({
+          itemprop: ['name', [Validators.required]],
+          content: ['', [Validators.required]]
+        }),
+        this.fb.group({
+          itemprop: ['description', [Validators.required]],
+          content: ['', [Validators.required]]
+        }),
+        this.fb.group({
+          itemprop: ['image', [Validators.required]],
+          content: ['', [Validators.required]]
+        }),
+        this.fb.group({
+          itemprop: ['', [Validators.required]],
+          content: ['', [Validators.required]]
+        }),
+        this.fb.group({
+          itemprop: ['', [Validators.required]],
+          content: ['', [Validators.required]]
+        }),
+      ])
+    })
+    this.firebaseService.readFunctionalityObject('/productMain/productMainList').subscribe((res: any) => {
+      console.log(res);
+      this.dataProductMain = res;
+    })
+    this.firebaseService.readFunctionalityObject('/productMainBrand/productMainBrandList').subscribe((res: any) => {
+      console.log(res)
+      this.dataProductMainBrand = res;
+    })
+  }
+
+  editorConfig: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: 'auto',
+    minHeight: '0',
+    maxHeight: 'auto',
+    width: 'auto',
+    minWidth: '0',
+    translate: 'yes',
+    enableToolbar: true,
+    showToolbar: true,
+    placeholder: 'Enter text here...',
+    defaultParagraphSeparator: '',
+    defaultFontName: '',
+    defaultFontSize: '3',
+    fonts: [
+      {class: 'arial', name: 'Arial'},
+      {class: 'times-new-roman', name: 'Times New Roman'},
+      {class: 'calibri', name: 'Calibri'},
+      {class: 'comic-sans-ms', name: 'Comic Sans MS'}
+    ],
+    customClasses: [
+      {
+        name: 'quote',
+        class: 'quote',
+      },
+      {
+        name: 'redText',
+        class: 'redText'
+      },
+      {
+        name: 'titleText',
+        class: 'titleText',
+        tag: 'h1',
+      },
+    ],
+    uploadUrl: 'v1/image',
+  };
+
+  ngOnInit(): void {
+    if (this.isEdit) {
+      this.formDataProductDetails.patchValue(this.dataPatchValue);
+    }
+
+  }
+
+  public clearAll() {
+    console.log(this.getImg().controls.length);
+    console.log(this.getProductMetaGoogle().controls.length);
+    let count = 3;
+    while (count > 1) {
+      for (let i = 0; i < this.getProductMetaGoogle().controls.length; i++) {
+        this.checkFormMetaGoogle(i);
+      }
+      for (let i = 0; i < this.getProductMetaProperty().controls.length; i++) {
+        this.checkFormMetaProperty(i);
+      }
+      for (let i = 0; i < this.getProductMetaName().controls.length; i++) {
+        this.checkFormMetaName(i);
+      }
+      count--;
+    }
+
+  }
+
+  public checkImgExist(index: number) {
+    console.log(this.getImg().at(index).value);
+    const item = this.getImg().at(index);
+    if (item.value.name === '') {
+      this.deleteDataProductDetailsImg(index);
+    }
+  }
+
+  public onSubmit(): void {
+    this.clearAll();
+    this.firebaseService.createFunctionalityList(this.formDataProductDetails.value, '/productDetails');
+    this.matDialogRef.close();
+  }
+
+  public saveRowData(): any {
+    this.clearAll();
+    this.matDialogRef.close({isEdit: true, data: this.formDataProductDetails.value});
+  }
+
+  getImg() {
+    return this.formDataProductDetails.get('img') as FormArray;
+  }
+
+  getDescription() {
+    return this.formDataProductDetails.get('description') as FormArray;
+  }
+
+  getProductMetaName() {
+    return this.formDataProductDetails.get('productMetaName') as FormArray;
+  }
+
+  getProductMetaProperty() {
+    return this.formDataProductDetails.get('productMetaProperty') as FormArray;
+  }
+
+  getProductMetaGoogle() {
+    return this.formDataProductDetails.get('productMetaGoogle') as FormArray;
+  }
+
+  addDataProductDetailsMetaName() {
+    this.getProductMetaName().push(
+      this.fb.group({
+        name: ['', [Validators.required]],
+        content: ['', [Validators.required]]
+      }),
+    )
+  }
+
+  addDataProductDetailsMetaGoogle() {
+    this.getProductMetaGoogle().push(
+      this.fb.group({
+        itemprop: ['', [Validators.required]],
+        content: ['', [Validators.required]]
+      }),
+    )
+  }
+
+  addDataProductDetailsMetaProperty() {
+    this.getProductMetaProperty().push(
+      this.fb.group({
+        property: ['', [Validators.required]],
+        content: ['', [Validators.required]]
+      }),
+    )
+  }
+
+  addDataProductDetailsImg() {
+    this.getImg().push(
+      this.fb.group({
+        name: ['', [Validators.required]],
+        link: ['', [Validators.required]],
+      }),
+    )
+  }
+
+  addDataProductDetailsDescription() {
+    this.getDescription().push(
+      this.fb.group({
+        title: [''],
+        content: [''],
+      }),
+    )
+  }
+
+  deleteDataProductDetailsMetaName(index: number) {
+    this.getProductMetaName().removeAt(index);
+  }
+
+  deleteDataProductDetailsMetaGoogle(index: number) {
+    this.getProductMetaGoogle().removeAt(index);
+  }
+
+  deleteDataProductDetailsMetaProperty(index: number) {
+    this.getProductMetaProperty().removeAt(index);
+  }
+
+  deleteDataProductDetailsDescription(index: number) {
+    this.getDescription().removeAt(index);
+  }
+
+  deleteDataProductDetailsImg(index: number) {
+    this.getImg().removeAt(index);
+  }
+
+  insertDataProductDetailsDescription(index: number) {
+    this.getDescription().insert(index,
+      this.fb.group({
+        title: ['', [Validators.required]],
+        content: ['', [Validators.required]],
+      })
+    )
+  }
+
+  insertDataProductDetailsImg(index: number) {
+    this.getImg().insert(index,
+      this.fb.group({
+        name: ['', [Validators.required]],
+        link: ['', [Validators.required]],
+      })
+    );
+  }
+
+  checkFormMetaGoogle(id2: number) {
+    var itemGoogle = this.getProductMetaGoogle().at(id2);
+    // console.log('itemprop', itemGoogle.value.itemprop);
+    if (itemGoogle.value.itemprop === '') {
+      this.deleteDataProductDetailsMetaGoogle(id2);
+    }
+  }
+
+  checkFormMetaProperty(id2: number) {
+    var itemProperty = this.getProductMetaProperty().at(id2);
+    if (itemProperty.value.property === '') {
+      this.deleteDataProductDetailsMetaProperty(id2);
+    }
+  }
+
+  checkFormMetaName(id2: number) {
+    var itemHtml = this.getProductMetaName().at(id2);
+    if (itemHtml.value.name === '') {
+      this.deleteDataProductDetailsMetaName(id2);
+    }
+  }
+
+
+  showHidden(keyword: string) {
+    if (keyword === 'meta') {
+      this.isHiddenMeta = true;
+    } else if (keyword === 'img') {
+      this.isHiddenImg = true;
+    } else if (keyword == 'description') {
+      this.isHiddenDescription = true;
+    }
+
+  }
+
+  hideHidden(keyword: string) {
+    if (keyword === 'meta') {
+      this.isHiddenMeta = false;
+    } else if (keyword === 'img') {
+      this.isHiddenImg = false;
+    } else if (keyword == 'description') {
+      this.isHiddenDescription = false;
+    }
+  }
+
+
+}

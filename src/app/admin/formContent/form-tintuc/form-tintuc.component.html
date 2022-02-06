@@ -1,0 +1,24 @@
+<div>
+  <form action="" [formGroup]="formTintuc">
+    <span class="text-warning">** Nội dung 1</span>
+    <angular-editor [config]="config" formControlName="content1"></angular-editor>
+    <span class="text-warning">** Nội dung 2</span>
+    <angular-editor [config]="config" formControlName="content2"></angular-editor>
+    <span class="text-warning">** Nội dung 3</span>
+    <angular-editor [config]="config" formControlName="content3"></angular-editor>
+    <span class="text-warning">** Nội dung 4</span>
+    <angular-editor [config]="config" formControlName="content4"></angular-editor>
+  </form>
+</div>
+
+
+<div class="btnGroup">
+  <button class="btn btn-outline-warning btnExForm" *ngIf="!isEdit" (click)="onSubmit()" [disabled]="this.formTintuc.invalid">
+    <i class="fad fa-paper-plane"></i>
+    <span>submit</span>
+  </button>
+  <button class="btn btn-outline-primary btnExForm" *ngIf="isEdit" (click)="saveRowData()">
+    <i class="fad fa-save"></i>
+    <span>Save</span>
+  </button>
+</div>
