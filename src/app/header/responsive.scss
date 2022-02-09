@@ -27,7 +27,7 @@
     i{
       font-weight: bold;
       font-size: 120%;
-      color: var(--primary-color);
+      color: var(--main-color3);
     }
   }
   .screenMobile__content.active{
@@ -44,15 +44,24 @@
         width: 100%;
         margin-right: 0!important;
         padding: 5px;
-        background-color: rgba(60, 99, 130, 0.1);
+        background-color: white;
         border-top: 1px solid var(--bg-gray);
-        i{
-          font-size: 110%;
-          margin-right: 7px;
+        a{
+          text-decoration: none;
+          color: rgba(0, 0, 0, 0.8);
+          i{
+            font-size: 110%;
+            margin-right: 7px;
+          }
+          span{
+            font-size: 90%;
+          }
         }
-        span{
-          font-size: 90%;
-        }
+
+      }
+      li:hover{
+        background-color: var(--bg-gray);
+        transition: 0.5s ease all;
       }
     }
   }
@@ -72,10 +81,10 @@
  .container-fluid {
     .row.row1 {
       .logo{
-          width: 150px;
+          width:var(--width-logo);
       }
       .search-bar {
-        width: calc(100% - 150px - 100px)!important;
+        width: calc(100% - var(--width-logo) - 100px)!important;
       }
       .box-icon {
           width: 70px!important;

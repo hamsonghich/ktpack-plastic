@@ -4,8 +4,8 @@ import {OwlOptions} from "ngx-owl-carousel-o";
 import {FirebaseService} from "../services/firebase.service";
 
 interface DataImgTrangchu {
-  imgLeft: {name: '', link: ''}[];
-  imgRight: {name: '', link: ''}[];
+  imgLeft: {name: '', link: '', linkRouting: ''}[];
+  imgRight: {name: '', link: '', linkRouting: ''}[];
 }
 @Component({
   selector: 'app-trang-chu',
@@ -19,6 +19,9 @@ export class TrangChuComponent implements OnInit {
   public dataImgTrangchu: DataImgTrangchu|any;
   public dataImgTrangchuLeft: any[] = [];
   public dataImgTrangchuRight: any[] = [];
+
+  public dataTypeProductDetails: any[] = [];
+  public dataAllProductDetails: any[] = [];
   customOptions: OwlOptions = {
     loop: true,
     autoplay: true,
@@ -38,6 +41,9 @@ export class TrangChuComponent implements OnInit {
       }
     }
   }
+  page = 1;
+  public itemOfPageArr = [4, 8, 12, 16, 20, 24];
+  public chooseItemOfPage = this.itemOfPageArr[1];
 
   constructor(public dataService: DataService, public firebaseService: FirebaseService) {
     this.firebaseService.readFunctionalityObject('/productMain/productMainList').subscribe((res: any[]) => {
@@ -58,6 +64,22 @@ export class TrangChuComponent implements OnInit {
       this.dataImgTrangchuLeft = res.imgLeft;
       this.dataImgTrangchuRight = res.imgRight;
     })
+    this.firebaseService.readFunctionalityList('/productDetails').subscribe((res: any[]) => {
+      this.dataAllProductDetails = res;
+      // console.log(this.dataAllProductDetails[0].productMain);
+      this.dataTypeProductDetails.splice(0, this.dataTypeProductDetails.length);
+      for (let i = 0; i < this.dataMainList.length; i++) {
+        this.dataTypeProductDetails[i] = [];
+        for (let j = 0; j < this.dataAllProductDetails.length; j++) {
+          if (this.dataMainList[i].link === this.dataAllProductDetails[j].productMain) {
+            this.dataTypeProductDetails[i].push(this.dataAllProductDetails[j]);
+          }
+        }
+      }
+      // console.log(this.dataTypeProductDetails);
+
+    })
+
   }
 
   ngOnInit(): void {

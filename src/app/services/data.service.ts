@@ -1,9 +1,42 @@
 import {Injectable} from '@angular/core';
-
+import {BehaviorSubject} from "rxjs";
+interface ListHeader {
+  mother: { name: any, link: any };
+  child: { name: any, link: any }[];
+}
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
+  public dataAddCartItem$ = new BehaviorSubject<any>([]);
+  public timeWork: string[] = [
+    '7h30 - 11h30', '13h30 - 17h30',
+  ];
+  public copyRight = '©Copyright 2021 | CÔNG TY CỔ PHẦN SẢN XUẤT KT-PACK - Giấy phép kinh doanh: 0901099386 Do sở kế hoạch và đầu tư TP Hà Nội cấp ngày 13/04/2021';
+  public infoCompanyList: ListHeader[] = [
+    {
+      mother: {name: 'Thông tin công ty', link: ''},
+      child: [{name: 'Giới thiệu công ty', link: ''},
+        {name: 'Cơ hội việc làm', link: ''},
+        {name: 'Ý kiến khách hàng', link: ''},
+        {name: 'Danh sách đại lí', link: ''},
+        {name: 'Đối tác', link: ''}]
+    },
+    {
+      mother: {name: 'Chính sách chung', link: ''},
+      child: [{name: 'Chính sách giao nhận', link: ''},
+        {name: 'Chính sách bảo hành', link: ''},
+        {name: 'Chính sách đổi trả hàng', link: ''},
+        {name: '', link: './assets/Storage/Upload/banner/DMCA_logo-grn-btn120w.png'}]
+    },
+    {
+      mother: {name: 'ĐIỀU KHOẢN & QUY ĐỊNH', link: ''},
+      child: [{name: 'Quy định bảo mật', link: ''},
+        {name: 'Quy định thanh toán', link: ''},
+        {name: 'Điều khoản sử dụng', link: ''},
+        {name: '', link: './assets/Storage/Upload/banner/da-thong-bao-website-voi-bo-ong-thuong.png'}]
+    },
+  ];
   // public dataHeader = [
   //   {mother: {name: 'TRANG CHỦ', link: '/trang-chu'}, child: [{name: '', link: ''}, ]},
   //   {mother: {name: 'GIỚI THIỆU', link: '/gioi-thieu'}, child: [{name: '', link: ''}, ]},
@@ -209,8 +242,25 @@ export class DataService {
       ],
     },
   ]
-
+  public dataCart: any[] = [];  // tổng số đơn hàng trong giỏ
+  public counter = 0;  // số lượng đơn hàng
   constructor() {
+    this.dataAddCartItem$.subscribe((item: any[]) => {
+      this.dataCart.splice(0, this.dataCart.length);
+      item.forEach((item1: any) => {
+        item1.quantity = 1;    // số lượng sản phẩm (mặc định là 1)
+        this.dataCart.push(item1);
+        this.counter = this.dataCart.length;
+        // console.log('---------ii---------');
+        // console.log(this.dataCart);
+      });
+      this.dataCart.forEach(item2 => {
+        this.dataCartUnique.push(item2);
+      });
+      // console.log('----------data--------');
+      // console.log(this.dataCartUnique);
+      // this.dataCartUnique = this.unique(this.dataCartUnique);
+    });
   }
   public getRandomInt(min: number, max: number): any {
     min = Math.ceil(min);
@@ -263,4 +313,5 @@ export class DataService {
     }
     return false;
   }
+
 }

@@ -4,11 +4,21 @@
       <div formArrayName="imgLeft" *ngFor="let item of getImgLeft().controls; let i = index">
         <div [formGroupName]="i">
           <div class="betweenFlex">
-            <span>Ảnh lớn {{i + 1}}: </span>
-            <input type="text" class="form-control" formControlName="name" placeholder="name">
+            <div class="itemDiv">
+              <span>Ảnh nhỏ {{i + 1}}: </span>
+              <input type="text" class="form-control" formControlName="name" placeholder="name">
+            </div>
 
-            <span>Link : </span>
-            <input type="text" class="form-control" formControlName="link" placeholder="link">
+            <div class="itemDiv">
+              <span>Link : </span>
+              <input type="text" class="form-control" formControlName="link" placeholder="link">
+            </div>
+
+            <div class="itemDiv">
+              <span>Link routing: </span>
+              <input type="text" class="form-control" formControlName="linkRouting" placeholder="linkRouting">
+            </div>
+
           </div>
         </div>
       </div>
@@ -18,11 +28,21 @@
       <div formArrayName="imgRight" *ngFor="let item of getImgRight().controls; let i = index">
         <div [formGroupName]="i">
           <div class="betweenFlex">
-            <span>Ảnh nhỏ {{i + 1}}: </span>
-            <input type="text" class="form-control" formControlName="name" placeholder="name">
+            <div class="itemDiv">
+              <span>Ảnh nhỏ {{i + 1}}: </span>
+              <input type="text" class="form-control" formControlName="name" placeholder="name">
+            </div>
 
-            <span>Link : </span>
-            <input type="text" class="form-control" formControlName="link" placeholder="link">
+            <div class="itemDiv">
+              <span>Link : </span>
+              <input type="text" class="form-control" formControlName="link" placeholder="link">
+            </div>
+
+            <div class="itemDiv">
+              <span>Link routing: </span>
+              <input type="text" class="form-control" formControlName="linkRouting" placeholder="linkRouting">
+            </div>
+
           </div>
         </div>
       </div>
@@ -32,7 +52,8 @@
 
 
 <div class="btnGroup">
-  <button class="btn btn-outline-warning btnExForm" *ngIf="!isEdit" (click)="onSubmit()" [disabled]="this.formTrangchu.invalid">
+  <button class="btn btn-outline-warning btnExForm" *ngIf="!isEdit" (click)="onSubmit()"
+          [disabled]="this.formTrangchu.invalid">
     <i class="fad fa-paper-plane"></i>
     <span>submit</span>
   </button>

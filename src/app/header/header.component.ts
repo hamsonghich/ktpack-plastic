@@ -10,7 +10,11 @@ import {FormLoginComponent} from "../form-login/form-login.component";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  public isCheckHeaderSmall = false;
   public keywordSearch: any;
+  public dataMainList: any[] = [];
+  public dataMainBrandList: any[] = [];
+  public dataHeader: any[] =  [];
   public dataInfoFB = {
     address: '',
     email: '',
@@ -27,9 +31,34 @@ export class HeaderComponent implements OnInit {
     this.firebaseService.readFunctionalityObject('/info-company').subscribe((res: any) => {
       this.dataInfoFB = res;
     })
+    this.firebaseService.readFunctionalityObject('/productMain/productMainList').subscribe((res: any[]) => {
+      this.dataMainList = res;
+      this.firebaseService.readFunctionalityObject('/productMainBrand/productMainBrandList').subscribe((res: any[]) => {
+        this.dataMainBrandList = res;
+        for (let i = 0 ; i < this.dataMainList.length; i++){
+          this.dataHeader[i] = [];
+          for(let j = 0; j < this.dataMainBrandList.length; j++){
+            if(this.dataMainList[i].link === this.dataMainBrandList[j].nameMain){
+              this.dataHeader[i].push(this.dataMainBrandList[j]);
+            }
+          }
+        }
+      })
+    })
+
+    this.routingUrlTrangchu();
+
   }
 
   ngOnInit(): void {
+  }
+  public routingUrlTrangchu(){
+    if (window.location.href.toString().includes('trang-chu')){
+     return  false;
+    }
+    else{
+     return  true;
+    }
   }
   public toggleMenu(): any{
     document.getElementsByClassName('container-listMenuTop')[0].classList.toggle('active');

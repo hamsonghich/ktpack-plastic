@@ -49,29 +49,35 @@ export class FormTrangChuComponent implements OnInit {
       imgRight: this.fb.array([
         this.fb.group({
           name: '',
-          link: ''
+          link: '',
+          linkRouting: '',
         }),
         this.fb.group({
           name: '',
-          link: ''
+          link: '',
+          linkRouting: '',
         }),
         this.fb.group({
           name: '',
-          link: ''
+          link: '',
+          linkRouting: '',
         })
       ]),
       imgLeft: this.fb.array([
         this.fb.group({
           name: '',
           link: '',
+          linkRouting: '',
         }),
         this.fb.group({
           name: '',
           link: '',
+          linkRouting: '',
         }),
         this.fb.group({
           name: '',
           link: '',
+          linkRouting: '',
         })
       ]),
 

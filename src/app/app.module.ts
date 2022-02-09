@@ -19,9 +19,16 @@ import { ProductMainBrandComponent } from './product-main-brand/product-main-bra
 import { HeaderComponent } from './header/header.component';
 import {MatIconModule} from "@angular/material/icon";
 import { FormLoginComponent } from './form-login/form-login.component';
-import { MenuHeaderComponent } from './menu-header/menu-header.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {CarouselModule} from "ngx-owl-carousel-o";
+import {MatBadgeModule} from "@angular/material/badge";
+import {MatListModule} from "@angular/material/list";
+import {NgxPaginationModule} from "ngx-pagination";
+import {FooterMainComponent} from "./footer-main/footer-main.component";
+import {MatSelectModule} from "@angular/material/select";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 
 @NgModule({
   declarations: [
@@ -32,26 +39,36 @@ import {CarouselModule} from "ngx-owl-carousel-o";
     ProductMainBrandComponent,
     HeaderComponent,
     FormLoginComponent,
-    MenuHeaderComponent,
+    FooterMainComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    NgbModule,
-    MatButtonModule,
-    MatDialogModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    MatIconModule,
-    FormsModule,
-    MatExpansionModule,
-    CarouselModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        NgbModule,
+        MatButtonModule,
+        MatDialogModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        HttpClientModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        MatIconModule,
+        FormsModule,
+        MatExpansionModule,
+        CarouselModule,
+        MatBadgeModule,
+        MatListModule,
+        NgxPaginationModule,
+        MatSelectModule,
+        MatButtonToggleModule,
+        MatTabsModule,
+        MatProgressBarModule,
+    ],
   providers: [],
+  exports: [
+    FooterMainComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

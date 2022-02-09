@@ -35,21 +35,21 @@ export class ContentProductDetailsComponent implements OnInit {
     })
     this.firebaseService.readFunctionalityList('/productDetails').subscribe((res: any[]) => {
       this.dataAllProductDetails = res;
-      console.log(this.dataAllProductDetails[0].productMain);
+      // console.log(this.dataAllProductDetails[0].productMain);
       this.dataTypeProductDetails.splice(0, this.dataTypeProductDetails.length);
       for (let i = 0; i < this.dataProductMain.length; i++) {
         this.dataTypeProductDetails[i] = [];
         for (let j = 0; j < this.dataAllProductDetails.length; j++) {
-          console.log(this.dataProductMain[i].link);
-          console.log(this.dataAllProductDetails[j].productMain);
-          console.log(this.dataAllProductDetails[j]);
+          // console.log(this.dataProductMain[i].link);
+          // console.log(this.dataAllProductDetails[j].productMain);
+          // console.log(this.dataAllProductDetails[j]);
           if (this.dataProductMain[i].link === this.dataAllProductDetails[j].productMain) {
             this.dataTypeProductDetails[i].push(this.dataAllProductDetails[j]);
           }
         }
         this.dataSearchKeyword[i] = JSON.parse(JSON.stringify(this.dataTypeProductDetails[i]));
       }
-      console.log(this.dataTypeProductDetails);
+      // console.log(this.dataTypeProductDetails);
 
     })
 
@@ -66,8 +66,8 @@ export class ContentProductDetailsComponent implements OnInit {
   }
 
   public showHidden(index: number) {
-    console.log(this.dataProductMain[index].link);
-    console.log(this.dataTypeProductDetails);
+    // console.log(this.dataProductMain[index].link);
+    // console.log(this.dataTypeProductDetails);
 
     for (let i = 0; i < this.isHiddenArr.length; i++) {
       this.isHiddenArr[i] = false;
@@ -87,13 +87,13 @@ export class ContentProductDetailsComponent implements OnInit {
     });
   }
   public searchKeyword(keyword: string, index: number): any{
-    console.log(keyword);
+    // console.log(keyword);
     this.dataSearchKeyword[index] = this.dataTypeProductDetails[index].filter((item: any) => {
       if (this.dataService.removeDauTV(item.productDetails.name).toLowerCase().match(keyword)){
         return item;
       }
     });
-    console.log(this.dataSearchKeyword);
+    // console.log(this.dataSearchKeyword);
   }
   public sortABC(index: number): any{
     // tslint:disable-next-line:only-arrow-functions typedef

@@ -38,29 +38,11 @@ export class FormProductDetailsComponent implements OnInit {
       star: [`${this.dataService.getRandomInt(4, 5)}`, [Validators.required, Validators.pattern('^\\d+\\.?\\d*$')]],
       discount: [`${this.dataService.getRandomInt1(10, 30)}`, [Validators.required, Validators.pattern('^\\d+\\.?\\d*$')]],
       evaluate: [`${this.dataService.getRandomInt1(200, 500)}`, [Validators.required, Validators.pattern('^\\d+\\.?\\d*$')]],
-      description: this.fb.array([
-        this.fb.group({
-          title: ['', [Validators.required]],
-          content: ['', [Validators.required]],
-        }),
-        this.fb.group({
-          title: ['', [Validators.required]],
-          content: ['', [Validators.required]],
-        }),
-        this.fb.group({
-          title: [''],
-          content: [''],
-        }),
-        this.fb.group({
-          title: [''],
-          content: [''],
-        }),
-        this.fb.group({
-          title: [''],
-          content: [''],
-        }),
-
-      ]),  // title: [''], content: ['']
+      description: this.fb.group({
+        mota: ['', [Validators.required]],
+        thongso: ['', [Validators.required]],
+      }),
+      // title: [''], content: ['']
       img: this.fb.array([
         this.fb.group({
           name: ['tên ảnh', [Validators.required]],
@@ -167,23 +149,16 @@ export class FormProductDetailsComponent implements OnInit {
   editorConfig: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
-    height: 'auto',
-    minHeight: '0',
+    minHeight: '1rem',
     maxHeight: 'auto',
-    width: 'auto',
-    minWidth: '0',
-    translate: 'yes',
-    enableToolbar: true,
-    showToolbar: true,
     placeholder: 'Enter text here...',
-    defaultParagraphSeparator: '',
-    defaultFontName: '',
-    defaultFontSize: '3',
+    translate: 'no',
+    sanitize: false,
+    toolbarPosition: 'top',
     fonts: [
-      {class: 'arial', name: 'Arial'},
-      {class: 'times-new-roman', name: 'Times New Roman'},
-      {class: 'calibri', name: 'Calibri'},
-      {class: 'comic-sans-ms', name: 'Comic Sans MS'}
+      {class: 'foro', name: 'foro'},
+      {class: 'hevatica-regular', name: 'hevatica-regular'},
+      {class: 'hevatica-light', name: 'hevatica-light'},
     ],
     customClasses: [
       {
@@ -199,10 +174,8 @@ export class FormProductDetailsComponent implements OnInit {
         class: 'titleText',
         tag: 'h1',
       },
-    ],
-    uploadUrl: 'v1/image',
+    ]
   };
-
   ngOnInit(): void {
     if (this.isEdit) {
       this.formDataProductDetails.patchValue(this.dataPatchValue);
@@ -252,9 +225,6 @@ export class FormProductDetailsComponent implements OnInit {
     return this.formDataProductDetails.get('img') as FormArray;
   }
 
-  getDescription() {
-    return this.formDataProductDetails.get('description') as FormArray;
-  }
 
   getProductMetaName() {
     return this.formDataProductDetails.get('productMetaName') as FormArray;
@@ -304,14 +274,6 @@ export class FormProductDetailsComponent implements OnInit {
     )
   }
 
-  addDataProductDetailsDescription() {
-    this.getDescription().push(
-      this.fb.group({
-        title: [''],
-        content: [''],
-      }),
-    )
-  }
 
   deleteDataProductDetailsMetaName(index: number) {
     this.getProductMetaName().removeAt(index);
@@ -325,22 +287,12 @@ export class FormProductDetailsComponent implements OnInit {
     this.getProductMetaProperty().removeAt(index);
   }
 
-  deleteDataProductDetailsDescription(index: number) {
-    this.getDescription().removeAt(index);
-  }
 
   deleteDataProductDetailsImg(index: number) {
     this.getImg().removeAt(index);
   }
 
-  insertDataProductDetailsDescription(index: number) {
-    this.getDescription().insert(index,
-      this.fb.group({
-        title: ['', [Validators.required]],
-        content: ['', [Validators.required]],
-      })
-    )
-  }
+
 
   insertDataProductDetailsImg(index: number) {
     this.getImg().insert(index,

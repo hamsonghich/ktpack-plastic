@@ -1,8 +1,8 @@
 <div class="container-fluid">
   <div class="row row1">
-     <div class="logo">
-       <img src="{{dataInfoFB.imgLogo}}" alt="{{dataInfoFB.tonchi}}" title="{{dataInfoFB.tonchi}}">
-     </div>
+    <div class="logo" routerLink="/trang-chu">
+      <img src="{{dataInfoFB.imgLogo}}" alt="{{dataInfoFB.tonchi}}" title="{{dataInfoFB.tonchi}}">
+    </div>
     <div class="search-bar">
       <mat-form-field appearance="outline">
         <mat-label>Nhập từ khóa tìm kiếm</mat-label>
@@ -17,7 +17,7 @@
       <ul class="screenPc">
         <li>
           <div class="icon-contact">
-            <a href="tel:{{dataInfoFB.hotline}}">
+            <a style="color: var(--main-color3); text-decoration: none" href="tel:{{dataInfoFB.hotline}}">
               <i class="fad fa-phone-square"></i>
               <div class="icon-contact__content">
                 <p>Gọi mua hàng</p>
@@ -42,7 +42,7 @@
                class="fa fa-shopping-cart mr-2"></i>
             <div class="icon-contact__content">
               <p>Giỏ hàng</p>
-              <p>Liên hệ</p>
+              <p style="font-size: 60%;">( Liên hệ )</p>
             </div>
           </div>
         </li>
@@ -56,7 +56,8 @@
           </div>
         </li>
       </ul>
-      <button (click)="openContentList()" style="display: none; border:none;background: none;" class="screenMobile"><i class="fal fa-bars"></i></button>
+      <button (click)="openContentList()" style="display: none; border:none;background: none;" class="screenMobile"><i
+        class="fal fa-bars"></i></button>
       <div style="display: none" id="screenMobile__content" class="screenMobile__content">
         <ul>
           <li>
@@ -65,17 +66,53 @@
             </a>
           </li>
           <li>
-            <i class="fad fa-calendar-day"></i> <span>Tin tức & Sự kiện</span>
+            <a href="">
+              <i class="fad fa-calendar-day"></i> <span>Tin tức & Sự kiện</span>
+            </a>
           </li>
           <li>
-            <i matBadge="0" matBadgeSize="small" matBadgeColor="accent"
-               class="fa fa-shopping-cart mr-2"></i> <span>Giỏ hàng</span>
+            <a href="">
+              <i matBadge="0" matBadgeSize="small" matBadgeColor="accent"
+                 class="fa fa-shopping-cart mr-2"></i> <span>Giỏ hàng</span>
+            </a>
           </li>
           <li>
-            <i class="fad fa-user-shield"></i><span>Quản trị viên</span>
+            <a href="">
+              <i class="fad fa-user-shield"></i><span>Quản trị viên</span>
+            </a>
           </li>
         </ul>
       </div>
     </div>
+  </div>
+
+  <div  *ngIf="this.routingUrlTrangchu()" class="menu-cat">
+    <div class="main-btn-parent">
+      <div class="main-button">
+        <span>Danh mục sản phẩm </span>
+        <i class="fa fa-bars"></i>
+      </div>
+      <div style="display: none" class="box-list">
+        <ul class="box-list__parent">
+          <li class="list-parent-for" *ngFor="let item of dataMainList; let i = index">
+            <a routerLink="/{{item.link}}">
+              <img src="{{item.icon}}" alt="{{item.icon}}" title="{{item.icon}}">
+              {{item.name}}
+            </a><i style="margin-left: 5px; color: #666666; font-size: 120%;" class="fas fa-caret-right"></i>
+            <ul  style="display: none" class="list-child">
+              <li *ngFor="let item1 of dataHeader[i]">
+                <i class="fad fa-circle"></i>
+                <a routerLink="/{{item.link}}/{{item1.link}}">{{item1.name}}</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="box-text">
+      <p>Đặt hàng dễ dàng<span style="padding: 0px 15px;color:#BDBDBD">|</span>Giao hàng nhanh chóng<span style="padding: 0px 15px;color:#BDBDBD">|</span>Tư vấn nhiệt tình</p>
+    </div>
+
   </div>
 </div>

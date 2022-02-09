@@ -21,6 +21,7 @@ export class FormProductMainComponent implements OnInit {
         this.fb.group({
           name: ['', [Validators.required]],
           link: ['', [Validators.required]],
+          icon: ['', [Validators.required]],
           productMainListMetaName: this.fb.array([
             this.fb.group({
               name: ['author', [Validators.required]],
@@ -99,6 +100,7 @@ export class FormProductMainComponent implements OnInit {
         this.fb.group({
           name: ['', [Validators.required]],
           link: ['', [Validators.required]],
+          icon: ['', [Validators.required]],
           productMainListMetaName: this.fb.array([
             this.fb.group({
               name: ['author', [Validators.required]],
@@ -177,6 +179,7 @@ export class FormProductMainComponent implements OnInit {
         this.fb.group({
           name: ['', [Validators.required]],
           link: ['', [Validators.required]],
+          icon: ['', [Validators.required]],
           productMainListMetaName: this.fb.array([
             this.fb.group({
               name: ['author', [Validators.required]],
@@ -255,6 +258,7 @@ export class FormProductMainComponent implements OnInit {
         this.fb.group({
           name: ['', [Validators.required]],
           link: ['', [Validators.required]],
+          icon: ['', [Validators.required]],
           productMainListMetaName: this.fb.array([
             this.fb.group({
               name: ['author', [Validators.required]],
@@ -333,6 +337,7 @@ export class FormProductMainComponent implements OnInit {
         this.fb.group({
           name: ['', [Validators.required]],
           link: ['', [Validators.required]],
+          icon: ['', [Validators.required]],
           productMainListMetaName: this.fb.array([
             this.fb.group({
               name: ['author', [Validators.required]],
@@ -411,6 +416,7 @@ export class FormProductMainComponent implements OnInit {
         this.fb.group({
           name: ['', [Validators.required]],
           link: ['', [Validators.required]],
+          icon: ['', [Validators.required]],
           productMainListMetaName: this.fb.array([
             this.fb.group({
               name: ['author', [Validators.required]],
@@ -489,6 +495,7 @@ export class FormProductMainComponent implements OnInit {
         this.fb.group({
           name: ['', [Validators.required]],
           link: ['', [Validators.required]],
+          icon: ['', [Validators.required]],
           productMainListMetaName: this.fb.array([
             this.fb.group({
               name: ['author', [Validators.required]],
@@ -567,6 +574,7 @@ export class FormProductMainComponent implements OnInit {
         this.fb.group({
           name: ['', [Validators.required]],
           link: ['', [Validators.required]],
+          icon: ['', [Validators.required]],
           productMainListMetaName: this.fb.array([
             this.fb.group({
               name: ['author', [Validators.required]],
@@ -645,6 +653,7 @@ export class FormProductMainComponent implements OnInit {
         this.fb.group({
           name: ['', [Validators.required]],
           link: ['', [Validators.required]],
+          icon: ['', [Validators.required]],
           productMainListMetaName: this.fb.array([
             this.fb.group({
               name: ['author', [Validators.required]],
@@ -723,6 +732,7 @@ export class FormProductMainComponent implements OnInit {
         this.fb.group({
           name: ['', [Validators.required]],
           link: ['', [Validators.required]],
+          icon: ['', [Validators.required]],
           productMainListMetaName: this.fb.array([
             this.fb.group({
               name: ['author', [Validators.required]],
@@ -801,6 +811,7 @@ export class FormProductMainComponent implements OnInit {
         this.fb.group({
           name: ['', [Validators.required]],
           link: ['', [Validators.required]],
+          icon: ['', [Validators.required]],
           productMainListMetaName: this.fb.array([
             this.fb.group({
               name: ['author', [Validators.required]],
@@ -879,6 +890,7 @@ export class FormProductMainComponent implements OnInit {
         this.fb.group({
           name: ['', [Validators.required]],
           link: ['', [Validators.required]],
+          icon: ['', [Validators.required]],
           productMainListMetaName: this.fb.array([
             this.fb.group({
               name: ['author', [Validators.required]],
@@ -957,6 +969,7 @@ export class FormProductMainComponent implements OnInit {
         this.fb.group({
           name: ['', [Validators.required]],
           link: ['', [Validators.required]],
+          icon: ['', [Validators.required]],
           productMainListMetaName: this.fb.array([
             this.fb.group({
               name: ['author', [Validators.required]],
@@ -1035,6 +1048,7 @@ export class FormProductMainComponent implements OnInit {
         this.fb.group({
           name: ['', [Validators.required]],
           link: ['', [Validators.required]],
+          icon: ['', [Validators.required]],
           productMainListMetaName: this.fb.array([
             this.fb.group({
               name: ['author', [Validators.required]],
@@ -1113,6 +1127,7 @@ export class FormProductMainComponent implements OnInit {
         this.fb.group({
           name: ['', [Validators.required]],
           link: ['', [Validators.required]],
+          icon: ['', [Validators.required]],
           productMainListMetaName: this.fb.array([
             this.fb.group({
               name: ['author', [Validators.required]],

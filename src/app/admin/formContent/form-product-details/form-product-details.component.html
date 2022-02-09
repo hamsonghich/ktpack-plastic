@@ -191,27 +191,12 @@
         <span>Ẩn nội dung</span>
       </button>
       <div class="contentItem description" *ngIf="this.isHiddenDescription">
-        <button class="btn btn-outline-warning btnEx mr-t10" (click)="addDataProductDetailsDescription()">
-          <i class="fal fa-plus-square"></i>
-          <span>Thêm nội dung</span>
-        </button>
-        <div formArrayName="description" *ngFor="let item of getDescription().controls; let i = index">
-          <div [formGroupName]="i">
-            <p class="text-warning">Đoạn thứ {{i}}</p>
-            <angular-editor placeholder="tiêu đề" formControlName="title"></angular-editor>
-            <angular-editor [config]="editorConfig" placeholder="nội dung" formControlName="content"></angular-editor>
-            <button class="btn btn-outline-success btnEx mr-t10" (click)="insertDataProductDetailsDescription(i)">
-              <i class="fal fa-sort-up"></i>
-              <span>Chèn Trên {{i}}</span>
-            </button>
-            <button class="btn btn-outline-danger btnEx mr-t10" (click)="deleteDataProductDetailsDescription(i)">
-              <i class="fal fa-trash-alt"></i>
-              <span>Xóa {{i}}</span>
-            </button>
+        <div formGroupName="description">
+            <angular-editor [config]="editorConfig" placeholder="mô tả" formControlName="mota"></angular-editor>
+            <angular-editor [config]="editorConfig" placeholder="thông số" formControlName="thongso"></angular-editor>
           </div>
         </div>
       </div>
-    </div>
 
 
 
