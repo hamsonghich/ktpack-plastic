@@ -1,3 +1,4 @@
+@import "responsive.scss";
 .container-fluid{
   width: 100%;
   background-color: var(--bg-gray);
@@ -38,7 +39,7 @@
     .sort-bar {
       border-top-right-radius: 5px;
       border-top-left-radius: 5px;
-      display: flex;
+      display: flex;flex-wrap: wrap;
       justify-content: flex-start;
       align-items: center;
       height: 60px;
@@ -52,7 +53,7 @@
       .sort-by-option {
         display: flex;
         justify-content: flex-start;
-        align-items: center;
+        align-items: center;flex-wrap: wrap;
 
         ::ng-deep mat-button-toggle-group {
           border: none;
@@ -152,7 +153,7 @@
             transition: all 0.35s ease-in;
             position: relative;
             background-color: white;
-            width: 230px;
+            width: 225px;
             margin: 10px;
             border-radius: 5px;
             border: none;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -339,16 +340,6 @@
           li:hover{
             transform: translateY(-5px);  transition: all 0.35s ease-in;
             box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-            .classFakeTop{
-              position: absolute;
-              background-color: var(--primary-color);top:-1px;right: 0;
-              height: 2px;animation: animationTop 1s linear infinite;
-            }
-            .classFakeBottom{
-              position: absolute;
-              background-color: var(--primary-color);bottom:-1px;left: 0;
-              height: 2px;animation: animationTop 1s linear infinite;
-            }
             .custom-img{
               img.img-main {
                 transform: scale(1.1);

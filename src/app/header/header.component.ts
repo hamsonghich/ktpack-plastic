@@ -72,5 +72,7 @@ export class HeaderComponent implements OnInit {
     const screenMobile__content = document.getElementsByClassName('screenMobile__content')[0] as HTMLElement;
     screenMobile__content.classList.toggle('active');
   }
-
+  public clickUnhover(){
+    const val = document.getElementsByClassName('box-list')[0] as HTMLElement;
+  }
 }

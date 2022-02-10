@@ -1,3 +1,4 @@
+
 <div [hidden]=this.isCheckUrl()>
   <!--  <div>{{this.dataProductMain|json}}</div>-->
   <div class="container-fluid" *ngIf="dataProductMain">
@@ -50,8 +51,6 @@
             <ul>
               <li *ngFor="let item of dataProductMain |
           paginate: {itemsPerPage: this.chooseItemOfPage, currentPage: page} let i = index">
-                <div class="classFakeTop"></div>
-                <div class="classFakeBottom"></div>
                 <div class="form-cell">
                   <div class="custom-img"
                        routerLink="/{{item.productMain}}/{{item.productMainBrand}}/{{item.productDetails.link}}">

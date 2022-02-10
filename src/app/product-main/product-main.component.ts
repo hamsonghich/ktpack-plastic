@@ -68,13 +68,13 @@ export class ProductMainComponent implements OnInit {
   public dataItemProductTotal: any; // giá trị của từng sản phẩm
   public dataTitle: any;
   constructor(public activatedRoute: ActivatedRoute, public dataServices: DataService, public firebaseService: FirebaseService) {
-    console.log(window.location.href);
+    // console.log(window.location.href);
     const url = window.location.href.toString();
-    console.log(url.slice(10, url.length).split('/').length - 1);
+    // console.log(url.slice(10, url.length).split('/').length - 1);
     const checkLoop = url.slice(10, url.length).split('/').length - 1;
     if (checkLoop >= 2) {
       this.checkUrlHidden = true;
-      console.log('this.checkUrlHidden', this.checkUrlHidden);
+      // console.log('this.checkUrlHidden', this.checkUrlHidden);
     }
     this.isCheckUrl();
   }
@@ -83,11 +83,11 @@ export class ProductMainComponent implements OnInit {
     this.firebaseService.readFunctionalityObject('/productMain/productMainList').subscribe((res: any[]) => {
       this.dataproductMainList = res;
       this.dataproductMainList.forEach(item => {
-        console.log(item.link);
+        // console.log(item.link);
 
         this.activatedRoute.paramMap.subscribe(params => {
           this.productMainID = params.get('productMains');
-          console.log('productMainID: ' + this.productMainID);
+          // console.log('productMainID: ' + this.productMainID);
           this.dataProductMain.splice(0, this.dataProductMain.length);
           if (this.checkUrlHidden) {
             // check meta tag product main
@@ -96,17 +96,17 @@ export class ProductMainComponent implements OnInit {
               this.dataTitle = item.name;
               item.productMainListMetaGoogle.forEach((item1: { itemprop: any; }) => {
                 //KEY THE META GOOGLE
-                console.log(item1.itemprop);
+                // console.log(item1.itemprop);
 
               })
               item.productMainListMetaProperty.forEach((item1: { content: any; }) => {
                 //KEY THE META FACEBOOK
-                console.log(item1.content);
+                // console.log(item1.content);
 
               })
               item.productMainListMetaName.forEach((item1: { content: any; }) => {
                 //KEY THE META HTML
-                console.log(item1.content);
+                // console.log(item1.content);
 
               })
             }
@@ -115,10 +115,10 @@ export class ProductMainComponent implements OnInit {
             this.dataTotalProduct = res;
             this.dataProductMain.splice(0, this.dataProductMain.length);
             for (let i = 0; i < this.dataTotalProduct.length; i++) {
-              console.log(this.dataTotalProduct[i].productMain);
+              // console.log(this.dataTotalProduct[i].productMain);
               if (this.dataTotalProduct[i].productMain === this.productMainID) {
                 this.dataProductMain.push(this.dataTotalProduct[i]);
-                console.log('need', this.dataProductMain);
+                // console.log('need', this.dataProductMain);
               }
             }
           })
@@ -173,7 +173,7 @@ export class ProductMainComponent implements OnInit {
 
   public isCheckUrl() {
     const url = window.location.href.toString();
-    console.log(url.slice(10, url.length).split('/').length - 1);
+    // console.log(url.slice(10, url.length).split('/').length - 1);
     const checkLoop = url.slice(10, url.length).split('/').length - 1;
     if (checkLoop >= 2) {
       return true;

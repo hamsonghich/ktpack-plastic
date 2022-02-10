@@ -4,7 +4,7 @@
 
   <div class="container-main">
 
-    <div class="content-product">
+    <div class="content-product" *ngIf="dataProductMainBrand[0]">
       <div class="content-title">
         <div class="content-product-item__title">
           <div class="title-left">
@@ -47,7 +47,7 @@
         </div>
       </div>
       <div>
-        <div class="content-product-item__list">
+        <div class="content-product-item__list" *ngIf="dataProductMainBrand">
           <div class="list_total_product">
             <ul>
               <li *ngFor="let item of dataProductMainBrand |

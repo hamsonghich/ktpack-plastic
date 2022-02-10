@@ -3,12 +3,32 @@ import {ActivatedRoute} from "@angular/router";
 import {Observable} from "rxjs";
 import {DataService} from "../services/data.service";
 import {FirebaseService} from "../services/firebase.service";
-
+interface DataProductDetails {
+  addCart: false;
+  address: "Hưng Yên";
+  checkBox: boolean;
+  description: { mota: '', thongso: '' };
+  discount: "";
+  evaluate: "";
+  idItem: "-Mv-uV8HCRC2mlXhMmJN";
+  img: { link: '', name: '' }[];
+  like: boolean;
+  price: "Liên hệ";
+  productDetails: { link: '', name: '' };
+  productMain: "";
+  productMainBrand: "";
+  productMetaGoogle: { content: '', itemprop: '' }[];
+  productMetaName: { content: '', name: '' }[];
+  productMetaProperty: { content: '', property: '' }[];
+  sellNumber: number;
+  star: number;
+}
 @Component({
   selector: 'app-product-main-brand',
   templateUrl: './product-main-brand.component.html',
   styleUrls: ['./product-main-brand.component.scss']
 })
+
 export class ProductMainBrandComponent implements OnInit {
 
   page = 1;
@@ -28,13 +48,7 @@ export class ProductMainBrandComponent implements OnInit {
   keyTitle: any;
   public checkUrlHidden = false;
   constructor(public activatedRoute: ActivatedRoute, public dataServices: DataService, public firebaseService: FirebaseService) {
-    // console.log(window.location.href);
-    // const url = window.location.href.toString();
-    // console.log(url.slice(10, url.length).split('/').length - 1);
-    // const checkLoop = url.slice(10, url.length).split('/').length - 1;
-    // if(checkLoop >=3){
-    //   this.checkUrlHidden = true;
-    // }
+
     this.isCheckUrl();
   }
 
@@ -42,12 +56,12 @@ export class ProductMainBrandComponent implements OnInit {
 
     this.activatedRoute.paramMap.subscribe(params => {
       this.productMainBrandID = params.get('productMainBrands');
-      console.log('productMainBrandID: ' + this.productMainBrandID);
+      // console.log('productMainBrandID: ' + this.productMainBrandID);
       this.dataProductMainBrand.splice(0, this.dataProductMainBrand.length);
       this.firebaseService.readFunctionalityObject('/productMainBrand/productMainBrandList').subscribe((res: any[]) => {
-        console.log('res1', res);
+        // console.log('res1', res);
         for(let i = 0; i < res.length; i++){
-          console.log('res', res[i]);
+          // console.log('res', res[i]);
           if(res[i].link === this.productMainBrandID){
             this.keyTitle = res[i].name;
             break;
@@ -99,7 +113,7 @@ export class ProductMainBrandComponent implements OnInit {
 
   public isCheckUrl(){
     const url = window.location.href.toString();
-    console.log(url.slice(10, url.length).split('/').length - 1);
+    // console.log(url.slice(10, url.length).split('/').length - 1);
     const checkLoop = url.slice(10, url.length).split('/').length - 1;
     if(checkLoop >=3){
       return true;

@@ -29,6 +29,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
+import { IndexMainMobileComponent } from './index-main-mobile/index-main-mobile.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
     ProductMainBrandComponent,
     HeaderComponent,
     FormLoginComponent,
-    FooterMainComponent
+    FooterMainComponent,
+    IndexMainMobileComponent
   ],
     imports: [
         BrowserModule,

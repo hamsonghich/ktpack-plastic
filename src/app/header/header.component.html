@@ -86,15 +86,51 @@
     </div>
   </div>
 
+  <div style="display: none" class="container-custom-mobile">
+    <mat-accordion multi="true" #accordion="matAccordion" class="accordion-body">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header class="header-mother">
+          <mat-panel-title class="mat-panel-title">
+            <mat-icon>list</mat-icon>
+            <b>DANH MỤC</b></mat-panel-title>
+          <mat-panel-description></mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <mat-accordion class="mat-table" *ngFor="let item of dataMainList; let i = index">
+          <mat-expansion-panel>
+            <mat-expansion-panel-header class="header-child">
+              <mat-panel-title><a rel="canonical" href="" (click)="accordion.closeAll()" routerLink="/{{item.link}}"
+                                  routerLinkActive="$router_link-active$">
+                <img style="margin-right: 5px;" width="25" height="25" src="{{item.icon}}" alt="{{item.icon}}"
+                     title="{{item.icon}}">
+                {{item.name}}
+              </a></mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-nav-list>
+              <mat-list-item *ngFor="let item1 of dataHeader[i]">
+                <i style="margin-left: 20px; font-size: 90%;" class="fad fa-tags"></i>
+                <a rel="canonical" (click)="accordion.closeAll();" href="" routerLink="/productType/{{item1.link}}"
+                   routerLinkActive="$router_link-active$">{{item1.name}}</a>
+              </mat-list-item>
+            </mat-nav-list>
+
+          </mat-expansion-panel>
+        </mat-accordion>
+
+      </mat-expansion-panel>
+    </mat-accordion>
+
+  </div>
+
   <div  *ngIf="this.routingUrlTrangchu()" class="menu-cat">
     <div class="main-btn-parent">
       <div class="main-button">
         <span>Danh mục sản phẩm </span>
         <i class="fa fa-bars"></i>
       </div>
-      <div style="display: none" class="box-list">
+      <div class="box-list">
         <ul class="box-list__parent">
-          <li class="list-parent-for" *ngFor="let item of dataMainList; let i = index">
+          <li (click)="clickUnhover()" class="list-parent-for" *ngFor="let item of dataMainList; let i = index">
             <a routerLink="/{{item.link}}">
               <img src="{{item.icon}}" alt="{{item.icon}}" title="{{item.icon}}">
               {{item.name}}
@@ -113,6 +149,14 @@
     <div class="box-text">
       <p>Đặt hàng dễ dàng<span style="padding: 0px 15px;color:#BDBDBD">|</span>Giao hàng nhanh chóng<span style="padding: 0px 15px;color:#BDBDBD">|</span>Tư vấn nhiệt tình</p>
     </div>
+    <div style="display: none" class="box-text-marquee">
+      <marquee  width="100%" behavior="scroll" >
+        <p>Đặt hàng dễ dàng<span style="padding: 0px 15px;color:#BDBDBD">|</span>Giao hàng nhanh chóng<span style="padding: 0px 15px;color:#BDBDBD">|</span>Tư vấn nhiệt tình</p>
+      </marquee>
+    </div>
+
 
   </div>
+
+
 </div>
