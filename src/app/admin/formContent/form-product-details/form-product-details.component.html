@@ -198,6 +198,67 @@
         </div>
       </div>
 
+    <div class="content-comment" style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;padding: 10px;margin-top: 15px;background-color: rgba(245,245,245,0.3);">
+      <div class="leftFlex contentTag">
+        <i class="fad fa-tags"></i><p>Bình luận sản phẩm</p>
+      </div>
+
+      <button class="btn btn-primary btnEx" (click)="showHidden('comment')">
+        <i class="fad fa-caret-circle-down"></i>
+        <span>Hiển thị thêm</span>
+      </button>
+      <button class="btn btn-danger btnEx" (click)="hideHidden('comment')">
+        <i class="fad fa-caret-circle-up"></i>
+        <span>Ẩn nội dung</span>
+      </button>
+      <div class="commentArr"  *ngIf="this.isHiddenComment">
+        <button class="btn btn-outline-warning btnEx mr-t10" (click)="addDataProductDetailsComment()">
+          <i class="fal fa-plus-square"></i>
+          <span>Thêm bình luận</span>
+        </button>
+        <button class="btn btn-outline-warning btnEx mr-t10" (click)="clearAll()">
+          <i class="fal fa-plus-square"></i>
+          <span>Clear All</span>
+        </button>
+        <div formArrayName="comment" *ngFor="let item of getComment().controls; let i = index">
+          <div [formGroupName]="i">
+            <div class="content-formImgArr">
+              <div class="form-group">
+                <label> <span>Tên người bl: </span>
+                  <input style="font-size: 110%;" class="form-control" placeholder="Tên người bình luận" formControlName="name">
+                </label>
+              </div>
+              <div class="form-group">
+                <label><span>Nội dung bl: </span>
+                  <input style="font-size: 110%;" class="form-control" placeholder="Nội dung bình luận" formControlName="content">
+                </label>
+              </div>
+              <div class="form-group">
+                <label><span>Thời gian bl: </span>
+                  <input style="font-size: 110%;" type="date" class="form-control" placeholder="Thời gian bình luận" formControlName="time">
+                </label>
+              </div>
+              <div class="form-group">
+                <label><span>Sao bl: </span>
+                  <input style="font-size: 110%;" type="number" class="form-control" placeholder="Sao bình luận <= 5" formControlName="star">
+                </label>
+              </div>
+<!--              <button class="btn btn-outline-primary btnEx" (click)="insertDataProductDetailsImg(i)">-->
+<!--                <i class="fal fa-sort-up"></i>-->
+<!--                <span>Chèn trên {{i}}</span>-->
+<!--              </button>-->
+              <button class="btn btn-danger btnEx" (click)="deleteDataProductDetailsComment(i)">
+                <i class="fal fa-trash-alt"></i>
+                <span>Xóa</span>
+              </button>
+              <!--              <button (click)="checkImgExist(i)">check</button>-->
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
 
 
 

@@ -67,6 +67,7 @@ export class ProductMainComponent implements OnInit {
   public checkUrlHidden = false;
   public dataItemProductTotal: any; // giá trị của từng sản phẩm
   public dataTitle: any;
+  public load = false;register = false;
   constructor(public activatedRoute: ActivatedRoute, public dataServices: DataService, public firebaseService: FirebaseService) {
     // console.log(window.location.href);
     const url = window.location.href.toString();
@@ -126,6 +127,7 @@ export class ProductMainComponent implements OnInit {
         })
 
       })
+
     })
     // this.activatedRoute.paramMap.subscribe(params => {
     //   this.productMainID = params.get('productMains');
@@ -180,5 +182,17 @@ export class ProductMainComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  registerTest() {
+    // loading triggered
+    this.load = true;
+
+    setTimeout(() => {
+      // loader stops after 5s
+      this.load = false,
+        // ..
+        this.register = true;
+    }, 100)
   }
 }

@@ -4,7 +4,7 @@ import {Observable} from "rxjs";
 import {DataService} from "../services/data.service";
 import {FirebaseService} from "../services/firebase.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-
+import { NgxLoadingXConfig, POSITION, SPINNER, NgxLoadingXModule } from 'ngx-loading-x';
 interface DataProductMain {
   addCart: false;
   address: "Hưng Yên";
@@ -32,6 +32,8 @@ interface DataProductMain {
   styleUrls: ['./product-details.component.scss']
 })
 export class ProductDetailsComponent implements OnInit {
+  public load = false;register = false;
+
   currentRate = 0;
   itemStarArr = [true, true, true, true, true ];
   page = 1;
@@ -62,6 +64,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.activatedRoute.paramMap.subscribe(params => {
       this.productDetailsID = params.get('productDetails');
       // this.productMainBrandID = params.get('productMainBrands');
@@ -71,6 +74,9 @@ export class ProductDetailsComponent implements OnInit {
       this.dataTotalProductDetails.splice(0, this.dataTotalProductDetails.length);
       this.dataProductSame.splice(0, this.dataProductSame.length);
       this.firebaseService.readFunctionalityList('/productDetails').subscribe((res: any[]) => {
+        //
+
+
         this.dataTotalProductDetails = res;
         // console.log('res11', res);
         for (let i = 0; i < this.dataTotalProductDetails.length; i++) {
@@ -85,6 +91,7 @@ export class ProductDetailsComponent implements OnInit {
         }
         this.val5 = (Math.random()* 3 + 7)*10;
         this.val4 = 100 - this.val5;
+
       })
 
     })
@@ -121,5 +128,17 @@ export class ProductDetailsComponent implements OnInit {
   }
   sendDanhgia(){
     alert('Bạn đã gửi thành công!')
+  }
+  loadingTest() {
+    // loading triggered
+    this.load = true;
+
+    setTimeout(() => {
+      // loader stops after 5s
+      this.load = false,  this.register = true;
+    }, 700)
+  }
+  srollTop(){
+    window.scrollTo(0,100);
   }
 }

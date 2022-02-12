@@ -19,6 +19,7 @@ export class FormProductDetailsComponent implements OnInit {
   public isHiddenMeta = false;
   public isHiddenImg = false;
   public isHiddenDescription = false;
+  public isHiddenComment = false;
 
   constructor(public fb: FormBuilder, public firebaseService: FirebaseService,
               public matDialogRef: MatDialogRef<FormProductDetailsComponent>, public dataService: DataService) {
@@ -134,6 +135,38 @@ export class FormProductDetailsComponent implements OnInit {
           itemprop: ['', [Validators.required]],
           content: ['', [Validators.required]]
         }),
+      ]),
+      comment: this.fb.array([
+        this.fb.group({
+          name: '', content: '', time: '', star: '4.5'
+        }),
+        this.fb.group({
+          name: '', content: '', time: '', star: '4.5'
+        }),
+        this.fb.group({
+          name: '', content: '', time: '', star: '4.5'
+        }),
+        this.fb.group({
+          name: '', content: '', time: '', star: '4.5'
+        }),
+        this.fb.group({
+          name: '', content: '', time: '', star: '4.5'
+        }),
+        this.fb.group({
+          name: '', content: '', time: '', star: '4.5'
+        }),
+        this.fb.group({
+          name: '', content: '', time: '', star: '4.5'
+        }),
+        this.fb.group({
+          name: '', content: '', time: '', star: '4.5'
+        }),
+        this.fb.group({
+          name: '', content: '', time: '', star: '4.5'
+        }),
+        this.fb.group({
+          name: '', content: '', time: '', star: '4.5'
+        }),
       ])
     })
     this.firebaseService.readFunctionalityObject('/productMain/productMainList').subscribe((res: any) => {
@@ -197,6 +230,9 @@ export class FormProductDetailsComponent implements OnInit {
       for (let i = 0; i < this.getProductMetaName().controls.length; i++) {
         this.checkFormMetaName(i);
       }
+      for (let i = 0; i < this.getComment().controls.length; i++) {
+        this.checkFormComment(i);
+      }
       count--;
     }
 
@@ -224,8 +260,9 @@ export class FormProductDetailsComponent implements OnInit {
   getImg() {
     return this.formDataProductDetails.get('img') as FormArray;
   }
-
-
+  getComment(){
+    return this.formDataProductDetails.get('comment') as FormArray;
+  }
   getProductMetaName() {
     return this.formDataProductDetails.get('productMetaName') as FormArray;
   }
@@ -236,6 +273,16 @@ export class FormProductDetailsComponent implements OnInit {
 
   getProductMetaGoogle() {
     return this.formDataProductDetails.get('productMetaGoogle') as FormArray;
+  }
+  addDataProductDetailsComment(){
+    this.getComment().push(
+      this.fb.group({
+        name: ['', [Validators.required]],
+        content: ['', [Validators.required]],
+        time: ['', [Validators.required]],
+        star: ['', [Validators.required]],
+      }),
+    )
   }
 
   addDataProductDetailsMetaName() {
@@ -274,6 +321,9 @@ export class FormProductDetailsComponent implements OnInit {
     )
   }
 
+  deleteDataProductDetailsComment(index: number){
+    this.getComment().removeAt(index);
+  }
 
   deleteDataProductDetailsMetaName(index: number) {
     this.getProductMetaName().removeAt(index);
@@ -301,6 +351,13 @@ export class FormProductDetailsComponent implements OnInit {
         link: ['', [Validators.required]],
       })
     );
+  }
+
+  checkFormComment(id2:number){
+    var itemComment = this.getComment().at(id2);
+    if (itemComment.value.name === '') {
+      this.deleteDataProductDetailsComment(id2);
+    }
   }
 
   checkFormMetaGoogle(id2: number) {
@@ -333,6 +390,8 @@ export class FormProductDetailsComponent implements OnInit {
       this.isHiddenImg = true;
     } else if (keyword == 'description') {
       this.isHiddenDescription = true;
+    }else if (keyword == 'comment') {
+      this.isHiddenComment = true;
     }
 
   }
@@ -344,8 +403,11 @@ export class FormProductDetailsComponent implements OnInit {
       this.isHiddenImg = false;
     } else if (keyword == 'description') {
       this.isHiddenDescription = false;
+    }else if (keyword == 'comment') {
+      this.isHiddenComment = false;
     }
   }
+
 
 
 }

@@ -30,7 +30,20 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import { IndexMainMobileComponent } from './index-main-mobile/index-main-mobile.component';
-
+import { NgxLoadingXConfig, POSITION, SPINNER, NgxLoadingXModule } from 'ngx-loading-x';
+const ngxLoadingXConfig: NgxLoadingXConfig = {
+  show: false,
+  bgBlur: 2,
+  bgColor: 'rgba(40, 40, 40, 0.95)',
+  bgOpacity: 5,
+  bgLogoUrl: '',
+  bgLogoUrlPosition: POSITION.topLeft,
+  bgLogoUrlSize: 500,
+  spinnerType: SPINNER.wanderingCubes,
+  spinnerSize: 220,
+  spinnerColor: '#dd0031',
+  spinnerPosition: POSITION.centerCenter,
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +57,7 @@ import { IndexMainMobileComponent } from './index-main-mobile/index-main-mobile.
     IndexMainMobileComponent
   ],
     imports: [
-        BrowserModule,
+        BrowserModule.withServerTransition({ appId: 'serverApp' }),
         AppRoutingModule,
         BrowserAnimationsModule,
         NgbModule,
@@ -66,6 +79,8 @@ import { IndexMainMobileComponent } from './index-main-mobile/index-main-mobile.
         MatButtonToggleModule,
         MatTabsModule,
         MatProgressBarModule,
+      NgxLoadingXModule.forRoot(ngxLoadingXConfig)
+
     ],
   providers: [],
   exports: [

@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from "rxjs";
+import {first} from "rxjs/operators";
 interface ListHeader {
   mother: { name: any, link: any };
   child: { name: any, link: any }[];
@@ -8,6 +9,20 @@ interface ListHeader {
   providedIn: 'root'
 })
 export class DataService {
+  public nameComment = [
+      'Cường', 'Tùng', 'Thắng', 'Huy', 'Sơn', 'Dũng', 'Hưng', 'Linh',
+    'Hiếu', 'Toàn', 'Hiệp', 'Luân', 'Hậu', 'Lộc', 'Nam', 'Long', 'Minh', 'Lâm', 'Đạt', 'Cương'
+    , 'Nguyên', 'Duy', 'Tuấn', 'Quang', 'Bảo Nam', 'Trung', 'Anh Tuấn', 'Gia Huy', 'Thành', 'Tuân', 'Hoàng Anh', 'Khải'
+    , 'Chiến', 'Đức', 'Vương', 'Khôi ', 'Nguyên', 'Phong', 'Lợi', 'Thuận', 'Hùng', 'Tân', 'Ninh', 'Dương'
+    , 'Quyền', 'Thi', 'Khánh Duy', 'Minh Quân', 'Huỳnh', 'An', 'Bảo Long', 'Khiêm', 'Khang', 'Hoàng', 'Tiến', 'Tuyên'
+    , 'Khương', 'Quỳnh', 'Minh Hoàng', 'Khánh', 'Hoàng Long', 'Quân', 'Duy Anh', 'Sang', 'Lực', 'Nguyên Khang', 'Hải', 'Lập'
+    , 'Hảo', 'Đăng Khôi', 'Thế Anh', 'Minh Khang', 'Hiển', 'Khoa', 'Quốc Huy', 'Quốc Khánh', 'Minh Hiếu', 'Đăng Khoa', 'Việt Anh', 'Kiên'
+    , 'Thái', 'Anh', 'Vũ', 'Hoàng Nam', 'Hưởng', 'Hồng Quân', 'Hải Anh', 'Nhật Huy', 'Tuấn Anh', 'Hiền', 'Huy Hoàng', 'Việt'
+    , 'Quang Huy', 'Phương', 'Nhật Anh', 'Thịnh', 'Hòa', 'Huân', 'Bách', 'Trường', 'Bình Minh',
+  ];
+  public lastname = [
+    'Nguyễn', 'Trần', 'Lê', 'Phạm', 'Phan', 'Vũ', 'Võ', 'Hoàng', 'Huỳnh', 'Đặng', 'Bùi', 'Đỗ', 'Hồ', 'Ngô', 'Dương', 'Lý'
+  ];
   public dataAddCartItem$ = new BehaviorSubject<any>([]);
   public timeWork: string[] = [
     '7h30 - 11h30', '13h30 - 17h30',
@@ -312,6 +327,16 @@ export class DataService {
       return true;
     }
     return false;
+  }
+  public returnAvatar(fullName: string){
+    const arrAvatar: string[] = [];
+    // console.log('fullName', fullName);
+    fullName.split(' ').forEach(item  => {
+      arrAvatar.push(item.charAt(0));
+    })
+    arrAvatar.join('');
+    // console.log('arrAvatar', arrAvatar.join(''), fullName);
+    return [fullName, arrAvatar.join('')];
   }
 
 }
